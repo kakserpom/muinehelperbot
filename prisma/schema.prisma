@@ -15,5 +15,5 @@ model qa {
   id       Int    @id @default(autoincrement())
   keywords String @db.Text
   header   String @db.Text
-  links    String @db.Text
+  link   String @db.Text
 }
