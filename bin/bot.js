@@ -34,8 +34,8 @@ bot.on('text', async (ctx) => {
         return
     }
     let msg = 'Вот, что я знаю:\n\n'
-    for (const {header, links} of items) {
-        msg += `👉 <a href="${escapeHTML(links)}">${escapeHTML(header)}</a>\n`
+    for (const {header, link} of items) {
+        msg += `👉 <a href="${escapeHTML(link)}">${escapeHTML(header)}</a>\n`
     }
     await ctx.replyWithHTML(msg, {
         reply_to_message_id: ctx.message.message_id,
