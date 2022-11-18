@@ -1,8 +1,8 @@
 import { Telegraf } from 'telegraf';
 import { QA } from '../src/qa.js';
 
-const escapeHTML = function(unsafe) {
-    return unsafe.replace(/[&<"']/g, function(m) {
+const escapeHTML = function (unsafe) {
+    return unsafe.replace(/[&<"']/g, function (m) {
         switch (m) {
             case '&':
                 return '&amp;';
@@ -34,12 +34,15 @@ bot.on('text', async (ctx) => {
         return
     }
     let msg = 'Вот, что я знаю:\n\n'
-    for (const {header, link} of items) {
-        msg += `👉 <a href="${escapeHTML(link)}">${escapeHTML(header)}</a>\n`
+    for (const { header, link } of items) {
+        let icon = '👉'
+        if (link.match(/^https:\/\/goo\.gl\/maps\//)) {
+            icon = '📍'
+        }
+        msg += `${icon} <a href="${escapeHTML(link)}">${escapeHTML(header)}</a>\n`
     }
     await ctx.replyWithHTML(msg, {
-        reply_to_message_id: ctx.message.message_id,
-        disable_web_page_preview: true,
+        reply_to_message_id: ctx.message.message_id, disable_web_page_preview: true,
     })
 });
 
