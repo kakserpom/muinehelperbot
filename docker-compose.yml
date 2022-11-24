@@ -5,7 +5,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata15:/var/lib/postgresql/data
       - pgconf:/etc/postgresql
       - pglog:/var/log/postgresql
     environment:
@@ -21,11 +21,10 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    entrypoint: [ "node", "/app/bin/bot.js" ]
     depends_on:
       - db
 volumes:
-  pgdata:
+  pgdata15:
     driver: local
   pgconf:
     driver: local
