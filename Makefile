@@ -1,10 +1,10 @@
  #!make
 .PHONY: init run all
 
-all: init run
+all: run
 
 init:
-	npx prisma migrate deploy
-	#node /app/bin/init.js
+	node /app/bin/init.js
 run:
+	npx prisma migrate deploy
 	node /app/bin/bot.js
